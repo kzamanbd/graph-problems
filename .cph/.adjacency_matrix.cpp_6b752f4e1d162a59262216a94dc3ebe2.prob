@@ -1,0 +1,1 @@
+{"name":"Local: adjacency_matrix","url":"d:\\Programming\\graph-problems\\adjacency_matrix.cpp","tests":[{"id":1705828371095,"input":"6 6\n0 1\n1 5\n0 4\n0 3\n3 4\n2 4","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Programming\\graph-problems\\adjacency_matrix.cpp","group":"local","local":true}
