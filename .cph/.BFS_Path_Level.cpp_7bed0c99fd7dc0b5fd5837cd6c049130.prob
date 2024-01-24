@@ -1,0 +1,1 @@
+{"name":"Local: BFS_Path_Level","url":"d:\\Programming\\graph-problems\\BFS_Path_Level.cpp","tests":[{"id":1705991623549,"input":"9 10\n0 7\n0 8\n6 1\n2 0\n0 4\n5 8\n4 7\n1 3\n3 5\n6 5\n0\n1","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Programming\\graph-problems\\BFS_Path_Level.cpp","group":"local","local":true}

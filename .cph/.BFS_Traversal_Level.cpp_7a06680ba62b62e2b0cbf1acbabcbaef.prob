@@ -1,0 +1,1 @@
+{"name":"Local: BFS_Traversal_Level","url":"d:\\Programming\\graph-problems\\BFS_Traversal_Level.cpp","tests":[{"id":1705919841469,"input":"5 6\n1 0\n1 2\n0 3\n1 4\n2 0\n4 3\n0","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Programming\\graph-problems\\BFS_Traversal_Level.cpp","group":"local","local":true}
