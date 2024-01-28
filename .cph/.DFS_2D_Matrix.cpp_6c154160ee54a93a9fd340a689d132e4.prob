@@ -1,0 +1,1 @@
+{"name":"Local: DFS_2D_Matrix","url":"d:\\Programming\\graph-problems\\DFS_2D_Matrix.cpp","tests":[{"id":1706331385719,"input":"2 3\n...\n...\n1 1","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Programming\\graph-problems\\DFS_2D_Matrix.cpp","group":"local","local":true}
