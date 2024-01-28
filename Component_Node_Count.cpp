@@ -4,11 +4,12 @@ using namespace std;
 vector<int> grid[100];
 bool visited[100];
 
-void dfs(int src) {
+void dfs(int src, int& count) {
+    count++;
     visited[src] = true;
     for (int child : grid[src]) {
         if (!visited[child]) {
-            dfs(child);
+            dfs(child, count);
         }
     }
 }
@@ -23,14 +24,18 @@ int main() {
         grid[x].push_back(y);
         grid[y].push_back(x);
     }
-    int count = 0;
+    vector<int> nodes;
     for (int i = 0; i < n; i++) {
         if (!visited[i]) {
-            dfs(i);
-            count++;
+            int count = 0;
+            dfs(i, count);
+            nodes.push_back(count);
         }
     }
-    cout << count;
+    sort(nodes.begin(), nodes.end());
+    for (int val : nodes) {
+        cout << val << " ";
+    }
 
     return 0;
 }

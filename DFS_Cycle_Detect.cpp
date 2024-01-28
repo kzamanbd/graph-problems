@@ -1,14 +1,20 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> grid[100];
-bool visited[100];
+const int N = 1e5 + 5;
+vector<int> grid[N];
+bool visited[N];
+int parents[N];
 
-void dfs(int src) {
+void dfs(int src, bool& cycle) {
     visited[src] = true;
     for (int child : grid[src]) {
+        if (visited[child] && child != parents[src]) {
+            cycle = true;
+        }
         if (!visited[child]) {
-            dfs(child);
+            parents[child] = src;
+            dfs(child, cycle);
         }
     }
 }
@@ -23,14 +29,18 @@ int main() {
         grid[x].push_back(y);
         grid[y].push_back(x);
     }
-    int count = 0;
+    bool cycle = false;
     for (int i = 0; i < n; i++) {
         if (!visited[i]) {
-            dfs(i);
-            count++;
+            dfs(i, cycle);
         }
     }
-    cout << count;
+    if (cycle) {
+        cout << "YES";
+    }
+    else {
+        cout << "NO";
+    }
 
     return 0;
 }
