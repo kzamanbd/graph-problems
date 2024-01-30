@@ -1,0 +1,1 @@
+{"name":"Local: Dijkstra_Naive","url":"d:\\Programming\\graph-problems\\Dijkstra_Naive.cpp","tests":[{"id":1706502989607,"input":"2 1\n0 1 9\n0","output":"0 6 5 4 9"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Programming\\graph-problems\\Dijkstra_Naive.cpp","group":"local","local":true}
