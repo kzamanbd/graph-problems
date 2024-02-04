@@ -71,15 +71,15 @@ int main() {
         int a, b, c;
         cin >> a >> b >> c;
         grid[a].push_back({ b, c });
-        grid[b].push_back({ a, c });
+        //grid[b].push_back({ a, c });
     }
-    for (int i = 0; i < n; i++) {
+    for (int i = 1; i < n; i++) {
         distances[i] = INT_MAX;
     }
     int src;
     cin >> src;
     dijkstra(src);
-    for (int i = 0; i < n; i++) {
+    for (int i = 1; i < n; i++) {
         cout << distances[i] << " ";
     }
     return 0;
