@@ -26,8 +26,8 @@ void bfs(int s1, int s2) {
     while (!q.empty()) {
         auto p = q.front();
         q.pop();
-
-        cout << p.first << " " << p.second << endl;
+        string d = "RLUD";
+        // cout << p.first << " " << p.second << endl;
 
         for (auto [i, j] : direction) {
             int si = p.first + i;
