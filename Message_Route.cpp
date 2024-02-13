@@ -3,27 +3,23 @@ using namespace std;
 
 const int N = 1e5 + 5;
 vector<int> grid[N];
-int level[N];
 bool visited[N];
 int parents[N];
 
-void bfs(int src, int dest) {
+void bfs(int src) {
     queue<int> q;
-
     q.push(src);
-    level[src] = 0;
     visited[src] = true;
     parents[src] = -1;
 
     while (!q.empty()) {
-        int element = q.front();
+        int pr = q.front();
         q.pop();
 
-        for (int child : grid[element]) {
+        for (int child : grid[pr]) {
             if (!visited[child]) {
                 visited[child] = true;
-                level[child] = level[element] + 1;
-                parents[child] = element;
+                parents[child] = pr;
                 q.push(child);
             }
         }
@@ -32,32 +28,33 @@ void bfs(int src, int dest) {
 
 int main() {
 
-    int n, edge;
-    cin >> n >> edge;
-
-    while (edge--) {
-        int x, y;
-        cin >> x >> y;
-        grid[x].push_back(y);
+    int n, e;
+    cin >> n >> e;
+    while (e--) {
+        int u, v;
+        cin >> u >> v;
+        grid[u].push_back(v);
+        grid[v].push_back(u);
     }
+    memset(visited, false, sizeof(visited));
 
     int src = 1, dest = n;
-    memset(visited, false, sizeof(visited));
-    bfs(src, dest);
+    bfs(src);
 
-    vector<int> res;
-
-    while (dest != -1) {
-        res.push_back(dest);
-        dest = parents[dest];
+    if (visited[dest]) {
+        vector<int> res;
+        while (dest != -1) {
+            res.push_back(dest);
+            dest = parents[dest];
+        }
+        reverse(res.begin(), res.end());
+        cout << res.size() << endl;
+        for (int val : res) {
+            cout << val << " ";
+        }
     }
-
-    sort(res.begin(), res.end());
-
-    cout << res.size() << endl;
-    for (int val : res) {
-        cout << val << " ";
+    else {
+        cout << "IMPOSSIBLE";
     }
-
     return 0;
 }

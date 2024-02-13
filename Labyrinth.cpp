@@ -10,12 +10,12 @@ bool visited[N][N];
 vector<pair<int, int>> direction = { {-1, 0}, {1, 0}, {0, -1}, {0, 1} };
 
 bool isValid(int i, int j) {
-    return i >= 0 && i < n && j >= 0 && j < m && !visited[i][j];
+    return i >= 0 && i < n && j >= 0 && j < m && !visited[i][j] && grid[i][j] != '#';
 }
 
 bool flag = false;
 
-void bfs(pair<int, int> src, pair<int, int> dest, string& str) {
+void bfs(pair<int, int> src, pair<int, int> dest, pair<bool, string>& res) {
     queue<pair<int, int>> q;
     q.push(src);
     visited[src.first][src.second] = true;
@@ -25,36 +25,18 @@ void bfs(pair<int, int> src, pair<int, int> dest, string& str) {
         q.pop();
 
         if (visited[dest.first][dest.second]) {
-            flag = true;
+            res.first = true;
             return;
         }
 
         for (auto move : direction) {
             int i = move.first + pr.first, j = move.second + pr.second;
 
-            if (isValid(i, j) && grid[i][j] != '#') {
+            if (isValid(i, j)) {
                 visited[i][j] = true;
                 q.push({ i, j });
-                str += (move == make_pair(-1, 0) ? "U" : (move == make_pair(1, 0) ? "D" : (move == make_pair(0, -1) ? "L" : "R")));
+                res.second += (move == make_pair(-1, 0) ? "U" : (move == make_pair(1, 0) ? "D" : (move == make_pair(0, -1) ? "L" : "R")));
             }
-        }
-    }
-}
-
-void dfs(pair<int, int> src, pair<int, int> dest, string& str) {
-    visited[src.first][src.second] = true;
-
-    if (visited[dest.first][dest.second]) {
-        flag = true;
-        return;
-    }
-
-    for (auto move : direction) {
-        int i = move.first + src.first, j = move.second + src.second;
-
-        if (isValid(i, j) && grid[i][j] != '#') {
-            str += (move == make_pair(-1, 0) ? "U" : (move == make_pair(1, 0) ? "D" : (move == make_pair(0, -1) ? "L" : "R")));
-            dfs({ i, j }, dest, str);
         }
     }
 }
@@ -76,13 +58,12 @@ int main() {
         }
     }
 
-    string str;
-    bfs(src, dest, str);
-    // dfs(src, dest, str);
-    if (flag) {
-        cout << "YES";
-        str.pop_back();
-        cout << endl << str.size() << endl << str;
+    pair<bool, string> res = { false, "" };
+    bfs(src, dest, res);
+    if (res.first) {
+        cout << "YES" << endl;
+        cout << res.second.size() << endl;
+        cout << res.second;
     }
     else {
         cout << "NO";
