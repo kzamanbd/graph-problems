@@ -1,0 +1,1 @@
+{"name":"Local: 10106_Sundorban","url":"d:\\Programming\\graph-problems\\10106_Sundorban.cpp","tests":[{"id":1707811701638,"input":"5\nSPPPP\nTPTPP\nTPPPP\nPTETT\nPTPTT","output":"5"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Programming\\graph-problems\\10106_Sundorban.cpp","group":"local","local":true}
