@@ -1,62 +1,93 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int n, m;
 const int N = 1005;
+
+int n, m;
 char grid[N][N];
 bool visited[N][N];
 pair<int, int> path[N][N];
 
-// Possible moves: up, down, left, right
-vector<pair<int, int>> direction = { {-1, 0}, {1, 0}, {0, -1}, {0, 1} };
+class Person {
+public:
+    int x, y;
+    char n;
+
+    Person(int x, int y, char n) {
+        this->x = x;
+        this->y = y;
+        this->n = n;
+    }
+};
+
+vector<pair<int, int>> moves = { { 0,1 }, {1,0}, {0, -1}, {-1, 0} };
 
 bool isValid(int i, int j) {
-    return i >= 0 && i < n && j >= 0 && j < m && !visited[i][j] && grid[i][j] != '#';
+    return i >= 0 && i < n && j >= 0 && j < m && grid[i][j] != '#';
 }
 
-void bfs(pair<int, int> src) {
-    queue<pair<int, int>> q;
-
-    q.push(src);
-    visited[src.first][src.second] = true;
-
+void bfs(queue<Person>& q) {
     while (!q.empty()) {
-        auto pr = q.front();
+        Person front = q.front();
         q.pop();
 
-        int si = pr.first, sj = pr.second;
+        for (auto move : moves) {
+            int ci = front.x + move.first, cj = front.y + move.second;
 
-        for (auto move : direction) {
-            int i = move.first + si, j = move.second + sj;
+            if (isValid(ci, cj) && !visited[ci][cj]) {
+                visited[ci][cj] = true;
+                q.push(Person(ci, cj, front.n));
+                grid[ci][cj] = front.n;
 
-            if (isValid(i, j)) {
-                visited[i][j] = true;
-                q.push({ i, j });
-                path[i][j] = { move.first, move.second };
+                if (front.n == 'A') {
+                    path[ci][cj] = { move.first, move.second };
+                }
             }
         }
     }
+}
+
+bool isOuter(int i, int j) {
+    return i == 0 || j == 0 || i == n - 1 || j == m - 1;
 }
 
 int main() {
-
+    queue<Person> q;
     cin >> n >> m;
     pair<int, int> src, dest;
-
+    // grid input
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
             cin >> grid[i][j];
+            if (grid[i][j] == 'M') {
+                q.push(Person(i, j, 'M'));
+                visited[i][j] = true;
+            }
+
             if (grid[i][j] == 'A') {
                 src = { i, j };
-            }
-            if (grid[i][j] == 'B') {
-                dest = { i, j };
             }
         }
     }
 
-    bfs(src);
-    if (visited[dest.first][dest.second]) {
+    q.push(Person(src.first, src.second, 'A'));
+    visited[src.first][src.second] = true;
+
+    bfs(q);
+
+    bool isExit = false;
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (isOuter(i, j) && grid[i][j] == 'A') {
+                isExit = true;
+                dest = { i, j };
+                break;
+            }
+        }
+    }
+
+    if (isExit) {
         cout << "YES" << endl;
         vector<pair<int, int>> res;
         while (dest.first != src.first || dest.second != src.second) {
@@ -90,6 +121,7 @@ int main() {
     else {
         cout << "NO";
     }
+
 
     return 0;
 }
