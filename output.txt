@@ -1,4 +1,1 @@
-Case 1 : 48
-Case 2 : 36
-Case 3 : 34
-Case 4 : 13
+3 9

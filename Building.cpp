@@ -2,9 +2,8 @@
 using namespace std;
 
 const int N = 1e5 + 5;
-int parent[N];
-int group[N];
-
+long long parent[N];
+long long group[N];
 void initialize(int n) {
     for (int i = 1; i <= n; i++) {
         parent[i] = -1;
@@ -64,15 +63,12 @@ int main() {
 
 
     long long totalCost = 0;
-    int count = 0;
     int nodeCount = 0;
     for (auto edge : edges) {
-        // cout << edge.u << " " << edge.v << " " << edge.w << endl;
         int l1 = dsuFind(edge.u);
         int l2 = dsuFind(edge.v);
 
         if (l1 == l2) {
-            count++;
             continue;
         }
         else {
@@ -81,11 +77,13 @@ int main() {
             nodeCount++;
         }
     }
+
     if (nodeCount == n - 1) {
-        cout << count << " " << totalCost;
+
+        cout << totalCost;
     }
     else {
-        cout << "Not Possible";
+        cout << "-1";
     }
 
 
