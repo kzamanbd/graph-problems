@@ -55,7 +55,7 @@ int main() {
     if (visited[dest.first][dest.second]) {
         cout << "Y" << endl;
         vector<pair<int, int>> res;
-        while (dest.first != src.first || dest.second != src.second) {
+        while (dest != src) {
             if (grid[dest.first][dest.second] != '@') {
                 grid[dest.first][dest.second] = '+';
             }

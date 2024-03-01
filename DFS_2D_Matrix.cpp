@@ -1,11 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
+#define pi pair<int,int>
 
 char matrix[20][20];
 bool visited[20][20];
 int n, m;
 
-vector<pair<int, int>> direction = { { 0, 1 }, {0, -1}, {-1, 0}, {1, 0} };
+vector<pi> direction = { { 0, 1 }, {0, -1}, {-1, 0}, {1, 0} };
 
 bool isValid(int i, int j) {
     if (i < 0 || i >= n || j < 0 || j >= m) {
